@@ -1,3 +1,47 @@
+# Steps for running CNN-DSO data (adapted from original README)
+
+## 1. Installation
+### Dependencies
+### DSO
+- Setup dependencies of DSO (https://github.com/JakobEngel/dso)
+#### 1.1 Required Dependencies
+The following instructions are tested on Ubuntu 16.04 and 18.04. Other platforms might work with minor adjustments.
+##### eigen3 and boost (required).
+Required. Install with
+
+    sudo apt-get install libeigen3-dev libboost-all-dev
+
+#### 1.2 Optional Dependencies
+
+##### OpenCV (highly recommended).
+Used to read / write / display images.
+OpenCV is **only** used in `IOWrapper/OpenCV/*`. Without OpenCV, respective 
+dummy functions from `IOWrapper/*_dummy.cpp` will be compiled into the library, which do nothing.
+The main binary will not be created, since it is useless if it can't read the datasets from disk.
+Feel free to implement your own version of these functions with your prefered library, 
+if you want to stay away from OpenCV.
+
+Install with
+
+	sudo apt-get install libopencv-dev
+
+
+##### Pangolin (highly recommended).
+Used for 3D visualization & the GUI.
+Pangolin is **only** used in `IOWrapper/Pangolin/*`. You can compile without Pangolin, 
+however then there is not going to be any visualization / GUI capability. 
+
+Install from [https://github.com/stevenlovegrove/Pangolin](https://github.com/stevenlovegrove/Pangolin)
+
+### Monodepth
+- Build TensorFlow C++ API (https://github.com/yx0123/monodepth-cpp/tree/master/Tensorflow_build_instructions). **This is the hardest part!** 
+- Build monodepth-cpp (https://github.com/yx0123/monodepth-cpp). 
+- Prepare Monodepth pre-trained model. You can freaze .ckpt or download the model trained on cityscapes and fine-tuned on kitti [here](https://github.com/yan99033/monodepth-cpp/tree/master/model). 
+
+
+
+# Original README below:
+
 # CNN-DSO: A combination of Direct Sparse Odometry and CNN Depth Prediction 
 
 ### 1. Overview

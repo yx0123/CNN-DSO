@@ -38,7 +38,7 @@ Install from [https://github.com/stevenlovegrove/Pangolin](https://github.com/st
 - Refer to [Monodepth](https://github.com/yx0123/monodepth-cpp) for instructions for building Tensorflow and Monodepth.
 - Prepare Monodepth pre-trained model. You can freaze .ckpt or download the model trained on cityscapes and fine-tuned on kitti [here](https://github.com/yx0123/monodepth-cpp/tree/master/model). 
 
-## 2 Build
+## 2. Build
 
 1. Download the repository.
 
@@ -54,8 +54,8 @@ Install from [https://github.com/stevenlovegrove/Pangolin](https://github.com/st
 		cmake ..
 		make -j4
 
-## 3 Usage
-The current implementation can only take in images from a folder (cannot read from rostopic directly). Use this[link] to extract images from a rosbag to a folder. 
+## 3. Usage
+The current implementation can only take in images from a folder (cannot read from rostopic directly). Use [this](https://github.com/yx0123/bag_to_images) to extract images from a rosbag to a folder. 
 In addition to original DSO command line, you should specify the path to pre-trained model by `cnn`.
 
 		bin/dso_dataset \

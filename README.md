@@ -1,17 +1,19 @@
 # Steps for running CNN-DSO data (adapted from original README)
-
+This code provides a combination of [DSO](https://vision.in.tum.de/research/vslam/dso) and [Monodepth](http://visual.cs.ucl.ac.uk/pubs/monoDepth/).
+For every keyframe, depth values are initialized with the prediction from Monodepth.
 ## 1. Installation
 ### Dependencies
+
 ### DSO
-- Setup dependencies of DSO (https://github.com/JakobEngel/dso)
-#### 1.1 Required Dependencies
+Steps to setup dependencies of [DSO](https://github.com/JakobEngel/dso)
+#### Required Dependencies
 The following instructions are tested on Ubuntu 16.04 and 18.04. Other platforms might work with minor adjustments.
 ##### eigen3 and boost (required).
 Required. Install with
 
     sudo apt-get install libeigen3-dev libboost-all-dev
 
-#### 1.2 Optional Dependencies
+#### Optional Dependencies
 
 ##### OpenCV (highly recommended).
 Used to read / write / display images.
@@ -36,15 +38,15 @@ Install from [https://github.com/stevenlovegrove/Pangolin](https://github.com/st
 - Refer to [Monodepth](https://github.com/yx0123/monodepth-cpp) for instructions for building Tensorflow and Monodepth.
 - Prepare Monodepth pre-trained model. You can freaze .ckpt or download the model trained on cityscapes and fine-tuned on kitti [here](https://github.com/yan99033/monodepth-cpp/tree/master/model). 
 
-#### 2.3 Build
+## 2 Build
 
-- Download the repository.
+1. Download the repository.
 
-		git clone https://github.com/muskie82/CNN-DSO.git
+		git clone https://github.com/yx0123/CNN-DSO.git
 
-- Modify paths to include directories and libraries of TensorFlow and monodepth-cpp in `CMakeLists.txt` (4 lines of `/abosolute/path/to/XXXXX`).
+2. Modify paths to include directories and libraries of TensorFlow and monodepth-cpp in `CMakeLists.txt` (4 lines of `/abosolute/path/to/XXXXX`).
 
-- Build
+3. Build
 
 		cd CNN-DSO
 		mkdir build
@@ -52,7 +54,8 @@ Install from [https://github.com/stevenlovegrove/Pangolin](https://github.com/st
 		cmake ..
 		make -j4
 
-### 3 Usage
+## 3 Usage
+The current implementation can only take in images from a folder (cannot read from rostopic directly). Use this[link] to extract images from a rosbag to a folder. 
 In addition to original DSO command line, you should specify the path to pre-trained model by `cnn`.
 
 		bin/dso_dataset \

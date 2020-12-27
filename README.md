@@ -36,7 +36,7 @@ Install from [https://github.com/stevenlovegrove/Pangolin](https://github.com/st
 
 ### Monodepth
 - Refer to [Monodepth](https://github.com/yx0123/monodepth-cpp) for instructions for building Tensorflow and Monodepth.
-- Prepare Monodepth pre-trained model. You can freaze .ckpt or download the model trained on cityscapes and fine-tuned on kitti [here](https://github.com/yan99033/monodepth-cpp/tree/master/model). 
+- Prepare Monodepth pre-trained model. You can freaze .ckpt or download the model trained on cityscapes and fine-tuned on kitti [here](https://github.com/yx0123/monodepth-cpp/tree/master/model). 
 
 ## 2 Build
 
@@ -44,7 +44,7 @@ Install from [https://github.com/stevenlovegrove/Pangolin](https://github.com/st
 
 		git clone https://github.com/yx0123/CNN-DSO.git
 
-2. Modify paths to include directories and libraries of TensorFlow and monodepth-cpp in `CMakeLists.txt` (4 lines of `/abosolute/path/to/XXXXX`).
+2. In `CMakeLists.txt` and `cmake/FindEigen3.cmake`, look for lines with `# modify path` and change them to match the path on your system. 
 
 3. Build
 

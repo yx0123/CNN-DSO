@@ -113,10 +113,10 @@ include_directories( ${CSPARSE_INCLUDE_DIR} ${CHOLMOD_INCLUDE_DIR})
 add_library(dso ${dso_SOURCE_FILES} ${dso_opencv_SOURCE_FILES} ${dso_pangolin_SOURCE_FILES})
 
 #TensorFlow and monodepth
-include_directories(/home/dh/tensorflow/local/include/google/tensorflow)
-include_directories(/home/dh/tensorflow/local/include/google/tensorflow/tensorflow/lite/tools/make/downloads/absl)
-include_directories(/home/dh/tensorflow/bazel-tensorflow/external/nsync/public)
-set(monodepth_INCLUDE_DIRS /home/dh/monodepth-cpp/install/include)
+include_directories(/home/dh/tensorflow/local/include/google/tensorflow) # modify path
+include_directories(/home/dh/tensorflow/local/include/google/tensorflow/tensorflow/lite/tools/make/downloads/absl) # modify path
+include_directories(/home/dh/tensorflow/bazel-tensorflow/external/nsync/public) # modify path
+set(monodepth_INCLUDE_DIRS /home/dh/monodepth-cpp/install/include) # modify path
 INCLUDE_DIRECTORIES(${monodepth_INCLUDE_DIRS})
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin") # OSX
@@ -129,8 +129,8 @@ endif()
 if (OpenCV_FOUND AND Pangolin_FOUND)
 	message("--- compiling dso_dataset.")
 	add_executable(dso_dataset ${PROJECT_SOURCE_DIR}/src/main_dso_pangolin.cpp )
-	target_link_libraries(dso_dataset dso boost_system cxsparse ${BOOST_THREAD_LIBRARY} ${LIBZIP_LIBRARY} ${Pangolin_LIBRARIES} ${OpenCV_LIBS} /home/dh/tensorflow/local/lib/libtensorflow_all.so)
-	TARGET_LINK_LIBRARIES(dso_dataset /home/dh/monodepth-cpp/install/lib/libmonodepth_static.a)
+	target_link_libraries(dso_dataset dso boost_system cxsparse ${BOOST_THREAD_LIBRARY} ${LIBZIP_LIBRARY} ${Pangolin_LIBRARIES} ${OpenCV_LIBS} /home/dh/tensorflow/local/lib/libtensorflow_all.so) # modify path
+	TARGET_LINK_LIBRARIES(dso_dataset /home/dh/monodepth-cpp/install/lib/libmonodepth_static.a) # modify path
 
 else()
 	message("--- not building dso_dataset, since either don't have openCV or Pangolin.")

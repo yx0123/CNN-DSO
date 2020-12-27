@@ -1,3 +1,72 @@
+# Steps for running CNN-DSO data (adapted from original README)
+This code provides a combination of [DSO](https://vision.in.tum.de/research/vslam/dso) and [Monodepth](http://visual.cs.ucl.ac.uk/pubs/monoDepth/).
+For every keyframe, depth values are initialized with the prediction from Monodepth.
+## 1. Installation
+### Dependencies
+
+### DSO
+Steps to setup dependencies of [DSO](https://github.com/JakobEngel/dso)
+#### Required Dependencies
+The following instructions are tested on Ubuntu 16.04 and 18.04. Other platforms might work with minor adjustments.
+##### eigen3 and boost (required).
+Required. Install with
+
+    sudo apt-get install libeigen3-dev libboost-all-dev
+
+#### Optional Dependencies
+
+##### OpenCV (highly recommended).
+Used to read / write / display images.
+OpenCV is **only** used in `IOWrapper/OpenCV/*`. Without OpenCV, respective 
+dummy functions from `IOWrapper/*_dummy.cpp` will be compiled into the library, which do nothing.
+The main binary will not be created, since it is useless if it can't read the datasets from disk.
+Feel free to implement your own version of these functions with your prefered library, 
+if you want to stay away from OpenCV.
+
+Install with
+
+	sudo apt-get install libopencv-dev
+
+##### Pangolin (highly recommended).
+Used for 3D visualization & the GUI.
+Pangolin is **only** used in `IOWrapper/Pangolin/*`. You can compile without Pangolin, 
+however then there is not going to be any visualization / GUI capability. 
+
+Install from [https://github.com/stevenlovegrove/Pangolin](https://github.com/stevenlovegrove/Pangolin)
+
+### Monodepth
+- Refer to [Monodepth](https://github.com/yx0123/monodepth-cpp) for instructions for building Tensorflow and Monodepth.
+- Prepare Monodepth pre-trained model. You can freaze .ckpt or download the model trained on cityscapes and fine-tuned on kitti [here](https://github.com/yan99033/monodepth-cpp/tree/master/model). 
+
+## 2 Build
+
+1. Download the repository.
+
+		git clone https://github.com/yx0123/CNN-DSO.git
+
+2. Modify paths to include directories and libraries of TensorFlow and monodepth-cpp in `CMakeLists.txt` (4 lines of `/abosolute/path/to/XXXXX`).
+
+3. Build
+
+		cd CNN-DSO
+		mkdir build
+		cd build
+		cmake ..
+		make -j4
+
+## 3 Usage
+The current implementation can only take in images from a folder (cannot read from rostopic directly). Use this[link] to extract images from a rosbag to a folder. 
+In addition to original DSO command line, you should specify the path to pre-trained model by `cnn`.
+
+		bin/dso_dataset \
+			files=XXXXX/sequence_XX/image_0 \
+			calib=XXXXX/sequence_XX/camera.txt \
+			cnn=XXXXX/model_city2kitti.pb \
+			preset=0 \
+			mode=1
+
+# Original README below:
+
 # CNN-DSO: A combination of Direct Sparse Odometry and CNN Depth Prediction 
 
 ### 1. Overview

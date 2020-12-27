@@ -53,6 +53,8 @@ macro(_eigen3_check_version)
   endif(NOT EIGEN3_VERSION_OK)
 endmacro(_eigen3_check_version)
 
+set (EIGEN3_INCLUDE_DIR "/home/dh/.cache/bazel/_bazel_dh/5872a8853ab10c1706acb3f263c922ae/external/eigen_archive")
+
 if (EIGEN3_INCLUDE_DIR)
 
   # in cache already

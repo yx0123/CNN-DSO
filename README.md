@@ -8,10 +8,10 @@ For every keyframe, depth values are initialized with the prediction from Monode
 Steps to setup dependencies of [DSO](https://github.com/JakobEngel/dso)
 #### Required Dependencies
 The following instructions are tested on Ubuntu 16.04 and 18.04. Other platforms might work with minor adjustments.
-##### eigen3 and boost (required).
+##### suitesparse, eigen3 and boost (required).
 Required. Install with
 
-    sudo apt-get install libeigen3-dev libboost-all-dev
+    sudo apt-get libsuitesparse-dev install libeigen3-dev libboost-all-dev
 
 #### Optional Dependencies
 
